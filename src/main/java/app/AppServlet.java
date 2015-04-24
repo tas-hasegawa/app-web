@@ -6,7 +6,7 @@ import org.glassfish.jersey.servlet.ServletContainer;
 import javax.ws.rs.ApplicationPath;
 
 /**
- * REST���N�G�X�g���󂯕t����T�[�u���b�g�N���X�ł��B
+ * RESTリクエストを受け付けるサーブレットクラスです。
  *
  * @author Hasegawa HIROSHI
  */
@@ -17,7 +17,7 @@ public class AppServlet extends ServletContainer {
     }
 
     /**
-     * JAX-RS(Jersey)�ɂ�����AResource�̐ݒ�N���X�ł��B
+     * JAX-RS(Jersey)における、Resourceの設定クラスです。
      */
     @ApplicationPath("/resource")
     public static class AppConfig extends ResourceConfig {

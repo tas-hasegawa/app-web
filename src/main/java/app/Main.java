@@ -7,35 +7,35 @@ import org.apache.catalina.startup.Tomcat;
 import java.io.File;
 
 /**
- * ‘g‚İ‚İTomcat‚ÌÀsƒNƒ‰ƒX‚Å‚·B
+ * çµ„ã¿è¾¼ã¿Tomcatã®å®Ÿè¡Œã‚¯ãƒ©ã‚¹ã§ã™ã€‚
  *
  * @author Hasegawa HIROSHI
  */
 public class Main {
 
     /**
-     * Tomcat‚ğ‹N“®‚µ‚Ü‚·B
-     * @param args Àsˆø”
+     * Tomcatã‚’èµ·å‹•ã—ã¾ã™ã€‚
+     * @param args å®Ÿè¡Œæ™‚å¼•æ•°
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
         Tomcat tomcat = new Tomcat();
 
-        // ƒ|[ƒg‚Ìİ’è
+        // ãƒãƒ¼ãƒˆã®è¨­å®š
         tomcat.setPort(8080);
 
-        // ƒRƒ“ƒeƒLƒXƒgƒ‹[ƒgƒpƒX‚ğw’è
+        // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ«ãƒ¼ãƒˆãƒ‘ã‚¹ã‚’æŒ‡å®š
         File base = new File("src/main/webapp/");
         Context context = tomcat.addContext("/app", base.getAbsolutePath());
 
-        // Ã“Iƒtƒ@ƒCƒ‹‚Ö‚Ìƒ}ƒbƒsƒ“ƒO
+        // é™çš„ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒãƒƒãƒ”ãƒ³ã‚°
         Tomcat.addServlet(context, "default", new DefaultServlet()).addMapping("/static/*");
 
-        // RESTƒŠƒNƒGƒXƒg‚Ì‘‹Œû‚Æ‚È‚éƒT[ƒuƒŒƒbƒg‚ğ“o˜^B
+        // RESTãƒªã‚¯ã‚¨ã‚¹ãƒˆã®çª“å£ã¨ãªã‚‹ã‚µãƒ¼ãƒ–ãƒ¬ãƒƒãƒˆã‚’ç™»éŒ²ã€‚
         Tomcat.addServlet(context, "jersey-container-servlet", new AppServlet());
         context.addServletMapping("/*", "jersey-container-servlet");
 
-        // Tomcat‚Ì‹N“®
+        // Tomcatã®èµ·å‹•
         tomcat.start();
         tomcat.getServer().await();
     }

@@ -1,14 +1,8 @@
-apply plugin: 'java'
 apply plugin: 'application'
 
-repositories {
-    mavenCentral()
-}
-
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
-
 dependencies {
+    compile project(':app-common')
+
     compile 'org.apache.tomcat.embed:tomcat-embed-core:8.0.20'
     compile 'org.apache.tomcat.embed:tomcat-embed-logging-juli:8.0.20'
     compile 'org.glassfish.jersey.containers:jersey-container-servlet:2.17'
