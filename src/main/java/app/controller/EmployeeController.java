@@ -1,5 +1,6 @@
 package app.controller;
 
+import common.annotations.Transactional;
 import common.entity.Employee;
 
 import javax.persistence.EntityManager;
@@ -12,33 +13,27 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("employee")
-public class EmployeeController {
+public class EmployeeController extends ControllerBase {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String index() {
-        EntityManagerFactory fac = Persistence.createEntityManagerFactory("jersey-app");
-        EntityManager em = fac.createEntityManager();
         return "employee";
     }
 
     @GET
     @Path("/insert")
     @Produces(MediaType.TEXT_PLAIN)
+    @Transactional
     public String put() {
-        EntityManagerFactory fac = Persistence.createEntityManagerFactory("jersey-app");
-        EntityManager em = fac.createEntityManager();
 
-        em.getTransaction().begin();
-
+        EntityManager em = getEntityManager();
         Employee employee = new Employee();
         employee.setEmployId(1);
         employee.setMail("h-hasegawa@tads.co.jp");
         employee.setName("長谷川 寛");
         employee.setPassword("00000000");
         em.persist(employee);
-
-        em.getTransaction().commit();
 
         return "OK";
     }
