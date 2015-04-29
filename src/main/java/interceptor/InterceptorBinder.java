@@ -5,11 +5,11 @@ import org.glassfish.hk2.utilities.binding.AbstractBinder;
 
 import javax.inject.Singleton;
 
-public class TxInterceptorBinder extends AbstractBinder {
+public class InterceptorBinder extends AbstractBinder {
 
     @Override
     protected void configure() {
-        bind(TxInterceptionService.class)
+        bind(AppInterceptionService.class)
                 .to(InterceptionService.class)
                 .in(Singleton.class);
     }

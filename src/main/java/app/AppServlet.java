@@ -1,6 +1,6 @@
 package app;
 
-import interceptor.TxInterceptorBinder;
+import interceptor.InterceptorBinder;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 
@@ -16,7 +16,7 @@ public class AppServlet extends ServletContainer {
     public static class AppConfig extends ResourceConfig {
         public AppConfig() {
             packages(getClass().getPackage().getName());
-            register(new TxInterceptorBinder());
+            register(new InterceptorBinder());
         }
     }
 }

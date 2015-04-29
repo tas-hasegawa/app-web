@@ -3,4 +3,6 @@ classes/*
 /*.iml
 .idea/*
 tomcat.8080/*
+/db/*
+
 
