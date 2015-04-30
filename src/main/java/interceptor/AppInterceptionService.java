@@ -1,12 +1,10 @@
 package interceptor;
 
-import common.annotations.Transactional;
 import org.aopalliance.intercept.ConstructorInterceptor;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.glassfish.hk2.api.Descriptor;
 import org.glassfish.hk2.api.Filter;
 import org.glassfish.hk2.api.InterceptionService;
-import org.glassfish.hk2.internal.StarFilter;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -15,8 +13,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
+/**
+ * アプリケーションのインターセプタークラスです。
+ * インターセプターの処理を実行する対象を定義します。
+ *
+ * @author Hiroshi HASEGAWA
+ */
 public class AppInterceptionService implements InterceptionService {
 
+    /**
+     * インターセプトする対象をフィルタリングします。
+     * @return フィルタ結果
+     */
     @Override
     public Filter getDescriptorFilter() {
         return new Filter() {
@@ -28,6 +36,11 @@ public class AppInterceptionService implements InterceptionService {
         };
     }
 
+    /**
+     * インターセプトするメソッドを取得します。
+     * @param method メソッド
+     * @return インターセプトするメソッドのリスト
+     */
     @Override
     public List<MethodInterceptor> getMethodInterceptors(Method method) {
         return Stream
@@ -37,6 +50,11 @@ public class AppInterceptionService implements InterceptionService {
                 .orElse(Collections.emptyList());
     }
 
+    /**
+     * インターセプトするコンストラクタを取得します。
+     * @param constructor コンストラクタ
+     * @return インターセプトするコンストラクタのリスト
+     */
     @Override
     public List<ConstructorInterceptor> getConstructorInterceptors(Constructor<?> constructor) {
         return Collections.emptyList();

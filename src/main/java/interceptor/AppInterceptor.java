@@ -11,8 +11,14 @@ import java.lang.reflect.Method;
 
 import static common.utils.StringUtils.*;
 
+/**
+ * アプリケーションのインターセプターの処理を定義します。
+ *
+ * @author Hiroshi HASEGAWA
+ */
 public class AppInterceptor implements MethodInterceptor {
 
+    /** ロガー */
     private Logger log = LoggerFactory.getLogger(getClass());
 
     @Override

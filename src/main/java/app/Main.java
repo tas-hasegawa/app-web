@@ -32,7 +32,7 @@ public class Main {
         Tomcat.addServlet(context, "default", new DefaultServlet()).addMapping("/static/*");
 
         // RESTリクエストの窓口となるサーブレットを登録。
-        Tomcat.addServlet(context, "jersey-container-servlet", new AppServlet());
+        Tomcat.addServlet(context, "jersey-container-servlet", new AppServletContainer());
         context.addServletMapping("/*", "jersey-container-servlet");
 
         // Tomcatの起動
